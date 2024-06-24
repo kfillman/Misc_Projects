@@ -1,0 +1,36 @@
+# Cryptography
+text = "Are you going to cowboy up or just lay there and bleed? You're no. 1"
+
+# Subsitution Techniques
+def Playfaircipher(text, key):
+    pass # to do later
+
+def CeaserCipher(text, shift):
+    encryption = ""
+    for c in text:
+        if c.isalnum() == True:
+            new_index = ord(c) + shift
+            if c.isupper():
+                if new_index > 90:
+                    new_index = (new_index-90)+65
+                if new_index < 65:
+                    new_index = 90-(65-new_index)
+            if c.islower():
+                if new_index > 122:
+                    new_index = (new_index-122)+97
+                if new_index < 97:
+                    new_index = 122-(97-new_index)
+            if c.isnumeric():
+                if new_index > 57:
+                    new_index = (new_index-57)+48
+                if new_index < 48:
+                    new_index = 57-(48-new_index)
+        else:
+            new_index = ord(c)
+        new_char = chr(new_index)
+        encryption = encryption + new_char
+    print(encryption)
+
+CeaserCipher(text, 3)
+new_text = "Duh crx jrlqj wr frzerc xs ru mxvw odc wkhuh dqg eohhg? Crx'uh qr. 4"
+CeaserCipher(new_text, -3)
