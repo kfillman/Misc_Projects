@@ -1,0 +1,93 @@
+# Written for Eckerd College's CS221 HW1 in 2021
+# A tic-tac-toe game (user vs computer) that begins with the user's move and is terminated upon win or filling of all cells. The player is always X as it has the opening move.
+# I have hopes of updating this to make the computer make non-random moves
+
+import random
+
+class GameBoard:
+    def __init__(self):
+        print("This is a game of tic-tac-toe against a computer with no skill. If you lose, you've not only lost the game, but your honor. Human makes the first move.")
+        self.board = [[7, 8, 9], [4, 5, 6], [1, 2, 3]]  # Numbers on game board, arranged in number pad format for ease of play
+        self.moves_x = []  # Create a list of moves each player has made to compare to winning configurations later
+        self.moves_o = []
+        self.winning_configurations = [[7, 8, 9], [4, 5, 6], [1, 2, 3], [7, 4, 1], [8, 5, 2], [9, 6, 3], [1, 5, 9], [7, 5, 3]]  # Possible combinations of winning alignments
+ 
+    def show_board(self):  # Displays updated game board
+        for row in self.grid:
+            print(row)
+
+    def move(self, move, user_symbol):
+        location = self.move_alignments.get(move)
+        self.grid[location[0]][location[1]] = user_symbol
+
+    def legal_move(self, move):
+        if move in self.moves_x or move in self.moves_o:
+            return False
+        else:
+            return True
+
+    def player_move(self):  # Occurs on each instance of player turn
+        self.show_board()
+        move = int(input('Enter the number of the space you would like to play on: '))
+        while self.legal_move(move) is False:
+            move = int(input('That is not a legal move as the space has already been played on.'
+                             ' Please choose another space: '))
+        self.move(move, 'X')
+        self.moves_x.append(move)
+
+    def computer_move(self):
+        move = random.randrange(1, 10)
+        while self.legal_move(move) is False:
+            move = random.randrange(1, 10)
+        self.move(move, 'O')
+        self.moves_o.append(move)
+
+    def play(self):
+        for i in range(1, 10):
+            if i % 2 == 1:
+                self.player_move()
+            else:
+                self.computer_move()
+            self.winner_check()
+
+    def winner_check(self):  # Checks if any winning configurations have been met
+        for i in range(3):
+            # check rows
+            if self.grid[i][0] == 'X' and self.grid[i][1] == 'X' and self.grid[i][2] == 'X':
+                print("X Wins")
+                raise SystemExit(0)
+            elif self.grid[i][0] == 'O' and self.grid[i][1] == 'O' and self.grid[i][2] == 'O':
+                print("O Wins")
+                raise SystemExit(0)
+
+            # check cols
+            if self.grid[0][i] == 'X' and self.grid[1][i] == 'X' and self.grid[2][i] == 'X':
+                print("X Wins")
+                raise SystemExit(0)
+            elif self.grid[0][i] == 'O' and self.grid[1][i] == 'O' and self.grid[2][i] == 'O':
+                print("O Wins")
+                raise SystemExit(0)
+
+            # check two diagonals
+        if self.grid[0][0] == 'X' and self.grid[1][1] == 'X' and self.grid[2][2] == 'X':
+            print("X Wins")
+            raise SystemExit(0)
+        elif self.grid[0][0] == 'O' and self.grid[1][1] == 'O' and self.grid[2][2] == 'O':
+            print("O Wins")
+            raise SystemExit(0)
+
+
+        if self.grid[0][2] == 'X' and self.grid[1][1] == 'X' and self.grid[2][0] == 'X':
+            print("X Wins")
+            raise SystemExit(0)
+        elif self.grid[0][2] == 'O' and self.grid[1][1] == 'O' and self.grid[2][0] == 'O':
+            print("O Wins")
+            raise SystemExit(0)
+
+
+def main():
+    test1 = GameBoard()
+    test1.play()
+
+
+main()
