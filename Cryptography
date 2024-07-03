@@ -1,36 +1,29 @@
-# Cryptography
-text = "Are you going to cowboy up or just lay there and bleed? You're no. 1"
+# Cryptography- more to be added
 
-# Subsitution Techniques
-def Playfaircipher(text, key):
-    pass # to do later
+# Sample texts to use 
+text = "Are you going to cowboy up or just lay there and bleed?"
+text2 = "The quick brown fox jumps over the lazy dog"
 
-def CeaserCipher(text, shift):
+def CaesarCipher(text, shift):
     encryption = ""
-    for c in text:
-        if c.isalnum() == True:
-            new_index = ord(c) + shift
-            if c.isupper():
-                if new_index > 90:
-                    new_index = (new_index-90)+65
-                if new_index < 65:
-                    new_index = 90-(65-new_index)
-            if c.islower():
-                if new_index > 122:
-                    new_index = (new_index-122)+97
-                if new_index < 97:
-                    new_index = 122-(97-new_index)
-            if c.isnumeric():
-                if new_index > 57:
-                    new_index = (new_index-57)+48
-                if new_index < 48:
-                    new_index = 57-(48-new_index)
+    for i in text:
+        if i.isalnum() == True:
+            if i.isupper():
+                new_index = (ord(i) + shift - 65) % 26 + 65
+            if i.islower():
+                new_index = (ord(i) + shift - 97) % 26 + 97
+            if i.isnumeric():
+                new_index = (ord(i) + shift - 48) % 10 + 48
+            new_char = chr(new_index)
         else:
-            new_index = ord(c)
-        new_char = chr(new_index)
-        encryption = encryption + new_char
-    print(encryption)
-
-CeaserCipher(text, 3)
-new_text = "Duh crx jrlqj wr frzerc xs ru mxvw odc wkhuh dqg eohhg? Crx'uh qr. 4"
-CeaserCipher(new_text, -3)
+            new_char = i
+        encryption += new_char
+    return encryption
+test1= CaesarCipher(text, 8)
+test2= CaesarCipher(test1, -8)
+print(test1)
+print(test2)
+test3 = CaesarCipher(text2, 16)
+test4 = CaesarCipher(test3, -16)
+print(test3)
+print(test4)
