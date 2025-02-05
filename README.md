@@ -1,2 +1,2 @@
 # Misc_Projects
-Miscellaneous projects that have no overarching theme
+Miscellaneous projects I've done over the years that have no overarching theme
