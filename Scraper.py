@@ -1,4 +1,4 @@
-# Scraper
+# Wikipedia scraper that selects a random link to follow
 
 import requests
 from bs4 import BeautifulSoup
@@ -29,4 +29,4 @@ def scrapeWikiArticle(url):
 		break
 	scrapeWikiArticle("https://en.wikipedia.org" + linkToScrape['href'])
 
-scrapeWikiArticle("https://en.wikipedia.org/wiki/Web_scraping")
+scrapeWikiArticle("https://en.wikipedia.org/wiki/Star_Wars")
