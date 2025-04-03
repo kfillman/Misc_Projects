@@ -1,2 +1,3 @@
 # Misc_Projects
-Miscellaneous projects I've done over the years that have no overarching theme. Upload date often does not match when project was done. Many of these are unfinsihed, but I hope to eventually revist them.
+Miscellaneous projects I've done over the years that have no overarching theme. There are data analysis projects, games, and small projects that I used as learning exercises.
+I like to think of this repo as a little corner of my GitHub for passing interests and curiosities.
